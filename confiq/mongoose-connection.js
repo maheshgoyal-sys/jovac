@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const config = require('config');
 
-mongoose.connect(config.get("MONGODB_URL") + "/JOVAC_PROJECT", {
+const mongoURI = config.get("MONGODB_URL");
+
+mongoose.connect(mongoURI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
