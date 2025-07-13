@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us | RankToCollege</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --secondary: #f1f5f9;
+      --text: #1e293b;
+      --muted: #64748b;
+      --white: #fff;
+      --radius: 1rem;
+      --shadow: 0 4px 12px rgba(30, 64, 175, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--secondary);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      z-index: 100;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text);
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    .contact-section {
+      padding: 4rem 1rem;
+      background-color: var(--white);
+    }
+
+    .contact-section h2 {
+      text-align: center;
+      color: var(--primary-dark);
+      font-size: 2.2rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 2rem;
+      max-width: 960px;
+      margin: auto;
+      background-color: #f9fafb;
+      padding: 2.5rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .address h3 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    .address p {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact-form label {
+      display: flex;
+      flex-direction: column;
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .contact-form input,
+    .contact-form select,
+    .contact-form textarea {
+      margin-top: 0.4rem;
+      padding: 0.75rem 1rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .contact-form input:focus,
+    .contact-form select:focus,
+    .contact-form textarea:focus {
+      border-color: var(--primary);
+      outline: none;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+    }
+
+    .contact-form button {
+      margin-top: 0.5rem;
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 0.9rem 1.2rem;
+      font-weight: 600;
+      font-size: 1rem;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .contact-form button:hover {
+      background-color: var(--primary-dark);
+    }
+
+    .footer {
+      background: #fff;
+      padding: 2rem 1rem 1rem;
+      margin-top: 4rem;
+      box-shadow: 0 -2px 12px rgba(30, 64, 175, 0.04);
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: space-between;
+    }
+
+    .footer-about {
+      flex: 2;
+      color: var(--muted);
+    }
+
+    .footer-links {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .footer-links a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover {
+      color: var(--primary);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 1.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+
+      .footer-content {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header>
+    <div class="nav">
+      <a href="#" class="logo">RankToCollege</a>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/#predictor">College Predictor</a></li>
+          <li><a href="/talkToUs">Talk to Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Contact Section -->
+  <section class="contact-section" id="contact">
+    <h2>📞 Reach Out</h2>
+    <div class="contact-grid">
+
+      <!-- Address Info -->
+      <div class="address">
+        <h3>Address</h3>
+        <p>Madan Vihar Colony, Near BSA Engineer College Road, Mathura,Uttar Pradesh</p>
+      </div>
+
+      <!-- Contact Form -->
+      <form class="contact-form" id="contactForm">
+        <label>
+          Name*
+          <input type="text" name="name" required placeholder="Enter your name" />
+        </label>
+
+        <label>
+          Mobile Number
+          <input type="tel" name="mobile" placeholder="Enter your mobile number" />
+        </label>
+
+        <label>
+          Email*
+          <input type="email" name="email" required placeholder="Enter your email" />
+        </label>
+
+        <label>
+          Subject*
+          <select name="subject" required>
+            <option value="">Select a Subject</option>
+            <option value="College Prediction">College Prediction</option>
+            <option value="Partnership">Partnership</option>
+            <option value="Support">Support</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+
+        <label>
+          Message*
+          <textarea name="message" rows="4" required placeholder="Type your message here..."></textarea>
+        </label>
+
+        <button type="submit">📨 Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-about">
+        <strong>About us:</strong> Helping JEE aspirants make informed college choices with data and technology.
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; 2025 RankToCollege. All rights reserved.
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+  document.getElementById("contactForm").addEventListener("submit", async function(e) {
+    e.preventDefault();
+
+    const form = e.target;
+    const data = {
+      name: form.name.value,
+      mobile: form.mobile.value,
+      email: form.email.value,
+      subject: form.subject.value,
+      message: form.message.value
+    };
+
+    try {
+      const response = await fetch('/talkToUs', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        alert("✅ Your message has been sent!");
+        form.reset();
+      } else {
+        alert("❌ Failed to send message.");
+      }
+    } catch (err) {
+      alert("❌ Server error. Try again later.");
+      console.error(err);
+    }
+  });
+</script>
+
+</body>
+</html>

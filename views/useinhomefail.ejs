@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JEE College Predictor</title>
+    <link rel="stylesheet" href="/style.css"> <style>
+        /* Basic CSS for the form and results */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        main {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 25px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+        .radio-group p {
+            margin: 0 0 10px 0;
+            font-weight: bold;
+            color: #555;
+        }
+        .radio-group label {
+            margin-right: 20px;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+        }
+        .radio-group input[type="radio"] {
+            width: auto;
+            margin-right: 8px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 30px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .college-card {
+            background-color: #f9f9f9;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+        .college-card h3 {
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 1.2em;
+        }
+        .college-card p {
+            margin: 5px 0;
+            color: #666;
+            font-size: 0.95em;
+        }
+        .college-card p strong {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <form id="predictForm">
+            <h2>🎓 JEE College Predictor</h2>
+
+            <input type="number" name="rank" placeholder="Enter your CRL Rank" required />
+
+            <select name="category" required>
+                <option value="">Select Category</option>
+                <option value="GEN">GEN</option>
+                <option value="OBC-NCL">OBC-NCL</option>
+                <option value="SC">SC</option>
+                <option value="ST">ST</option>
+            </select>
+
+            <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+            </select>
+
+            <select name="counselling" required>
+                <option value="">Select Counselling</option>
+                <option value="JoSAA">JoSAA</option>
+                <option value="CSAB">CSAB</option>
+            </select>
+
+            <select name="homeState" required>
+                <option value="">Select Home State</option>
+                <option value="Andhra Pradesh">Andhra Pradesh</option>
+                <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+                <option value="Assam">Assam</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Chhattisgarh">Chhattisgarh</option>
+                <option value="Goa">Goa</option>
+                <option value="Gujarat">Gujarat</option>
+                <option value="Haryana">Haryana</option>
+                <option value="Himachal Pradesh">Himachal Pradesh</option>
+                <option value="Jharkhand">Jharkhand</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Kerala">Kerala</option>
+                <option value="Madhya Pradesh">Madhya Pradesh</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Manipur">Manipur</option>
+                <option value="Meghalaya">Meghalaya</option>
+                <option value="Mizoram">Mizoram</option>
+                <option value="Nagaland">Nagaland</option>
+                <option value="Odisha">Odisha</option>
+                <option value="Punjab">Punjab</option>
+                <option value="Rajasthan">Rajasthan</option>
+                <option value="Sikkim">Sikkim</option>
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Telangana">Telangana</option>
+                <option value="Tripura">Tripura</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Uttarakhand">Uttarakhand</option>
+                <option value="West Bengal">West Bengal</option>
+                <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+                <option value="Ladakh">Ladakh</option>
+                <option value="Lakshadweep">Lakshadweep</option>
+                <option value="Puducherry">Puducherry</option>
+            </select>
+
+            <div class="radio-group">
+                <p>Are you eligible for PwD seats?</p>
+                <label>
+                    <input type="radio" name="pwd" value="true" required> Yes
+                </label>
+                <label>
+                    <input type="radio" name="pwd" value="false" required> No
+                </label>
+            </div>
+
+            <button type="submit">🔍 Predict Colleges</button>
+        </form>
+
+        <div id="result"></div>
+    </main>
+    <script>
+document.getElementById('predictForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const body = Object.fromEntries(formData);
+
+    // Convert "true"/"false" string to boolean
+    body.pwd = body.pwd === "true";
+
+    try {
+        const res = await fetch('/predict', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(body)
+        });
+
+        if (!res.ok) {
+            const errorData = await res.json();
+            throw new Error(errorData.error || `HTTP error! status: ${res.status}`);
+        }
+
+        const data = await res.json();
+
+        // ✅ Paste this here to debug
+        console.log("👉 College Data:", data);
+
+        const resultDiv = document.getElementById('result');
+
+        if (!data.length) {
+            resultDiv.innerHTML = `<p>No colleges found matching your criteria 😔</p>`;
+            return;
+        }
+
+        resultDiv.innerHTML = data.map(clg =>
+            `<div class="college-card">
+                <h3>${clg.collegeName}</h3>
+                <p><strong>Branch:</strong> ${clg.branch}</p>
+            </div>`
+        ).join('');
+    } catch (error) {
+        console.error('Frontend Error:', error);
+        document.getElementById('result').innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+    }
+});
+</script>
+</body>
+</html>
