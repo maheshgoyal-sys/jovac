@@ -1,0 +1,112 @@
+[
+  {
+    "collegeName": "IIT Bombay",
+    "branch": "Computer Science and Engineering",
+    "state": "Maharashtra",
+    "category": "OPEN",
+    "gender": "Gender-Neutral",
+    "quota": "AI",
+    "year": 2024,
+    "openingRank": 1,
+    "closingRank": 65
+  },
+  {
+    "collegeName": "IIT Delhi",
+    "branch": "Electrical Engineering",
+    "state": "Delhi",
+    "category": "OPEN-PwD",
+    "gender": "Gender-Neutral",
+    "quota": "OS",
+    "year": 2024,
+    "openingRank": 1,
+    "closingRank": 100
+  },
+  {
+    "collegeName": "NIT Trichy",
+    "branch": "Mechanical Engineering",
+    "state": "Tamil Nadu",
+    "category": "OBC-NCL",
+    "gender": "Gender-Neutral",
+    "quota": "HS",
+    "year": 2024,
+    "openingRank": 800,
+    "closingRank": 4000
+  },
+  {
+    "collegeName": "NIT Patna",
+    "branch": "Civil Engineering",
+    "state": "Bihar",
+    "category": "OBC-NCL-PwD",
+    "gender": "Gender-Neutral",
+    "quota": "HS",
+    "year": 2024,
+    "openingRank": 50,
+    "closingRank": 200
+  },
+  {
+    "collegeName": "IIIT Hyderabad",
+    "branch": "Computer Science",
+    "state": "Telangana",
+    "category": "OPEN",
+    "gender": "Gender-Neutral",
+    "quota": "AI",
+    "year": 2024,
+    "openingRank": 200,
+    "closingRank": 1200
+  },
+  {
+    "collegeName": "NIT Rourkela",
+    "branch": "Metallurgical Engineering",
+    "state": "Odisha",
+    "category": "SC",
+    "gender": "Gender-Neutral",
+    "quota": "OS",
+    "year": 2024,
+    "openingRank": 500,
+    "closingRank": 6000
+  },
+  {
+    "collegeName": "IIT Kanpur",
+    "branch": "Chemical Engineering",
+    "state": "Uttar Pradesh",
+    "category": "ST",
+    "gender": "Gender-Neutral",
+    "quota": "OS",
+    "year": 2024,
+    "openingRank": 100,
+    "closingRank": 1200
+  },
+  {
+    "collegeName": "NIT Warangal",
+    "branch": "Computer Science and Engineering",
+    "state": "Telangana",
+    "category": "OBC-NCL-PwD",
+    "gender": "Female-only (including Supernumerary)",
+    "quota": "HS",
+    "year": 2024,
+    "openingRank": 40,
+    "closingRank": 100
+  },
+  {
+    "collegeName": "IIT Guwahati",
+    "branch": "Electronics and Communication",
+    "state": "Assam",
+    "category": "OPEN",
+    "gender": "Gender-Neutral",
+    "quota": "OS",
+    "year": 2024,
+    "openingRank": 300,
+    "closingRank": 1800
+  },
+  {
+    "collegeName": "IIIT Delhi",
+    "branch": "Information Technology",
+    "state": "Delhi",
+   "category": "OBC-NCL-PwD",
+    "gender": "Gender-Neutral",
+    "quota": "HS",
+    "year": 2024,
+    "openingRank": 900,
+    "closingRank": 3600
+  }
+]
