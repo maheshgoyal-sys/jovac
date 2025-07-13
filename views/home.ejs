@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Precollege helps you choose the best college. Find mentors, book calls, and get personalized college predictions." />
+  <title>Precollege - College Predictor & Mentorship</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563eb;
+      --primary-dark: #1e40af;
+      --secondary: #f1f5f9;
+      --accent: #38bdf8;
+      --text: #1e293b;
+      --muted: #64748b;
+      --white: #fff;
+      --shadow: 0 4px 24px rgba(30, 64, 175, 0.08);
+      --radius: 1.2rem;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      color: var(--text);
+      background: var(--secondary);
+      line-height: 1.6;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--white);
+      box-shadow: var(--shadow);
+    }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+    }
+    .logo {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--primary);
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+    nav ul {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      align-items: center;
+    }
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+      position: relative;
+    }
+    nav a:hover, nav a:focus {
+      color: var(--primary);
+    }
+    .dropdown {
+      position: relative;
+    }
+    .dropdown-btn {
+      background: none;
+      border: none;
+      font: inherit;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.3em;
+      padding: 0;
+    }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 2.5rem;
+      left: 0;
+      background: var(--white);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+      min-width: 180px;
+      z-index: 10;
+      flex-direction: column;
+      padding: 0.5rem 0;
+    }
+    .dropdown-content a {
+      padding: 0.7em 1.2em;
+      color: var(--text);
+      white-space: nowrap;
+      font-size: 1rem;
+    }
+    .dropdown-content a:hover, .dropdown-content a:focus {
+      background: var(--secondary);
+      color: var(--primary);
+    }
+    .dropdown.open .dropdown-content {
+      display: flex;
+    }
+    .mobile-nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
+    @media (max-width: 900px) {
+      .nav {
+        padding: 1rem;
+      }
+      nav ul {
+        gap: 1rem;
+      }
+    }
+    @media (max-width: 700px) {
+      .nav {
+        flex-wrap: wrap;
+      }
+      nav ul {
+        display: none;
+        flex-direction: column;
+        background: var(--white);
+        position: absolute;
+        top: 100%;
+        right: 0;
+        left: 0;
+        box-shadow: var(--shadow);
+        border-radius: 0 0 var(--radius) var(--radius);
+        margin-top: 0.5rem;
+        z-index: 99;
+      }
+      nav ul.open {
+        display: flex;
+      }
+      .mobile-nav-toggle {
+        display: block;
+      }
+    }
+    /* Hero Section */
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 2.5rem auto 0 auto;
+      padding: 2rem;
+      gap: 2rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      flex-wrap: wrap;
+    }
+    .hero-content {
+      flex: 1 1 350px;
+      min-width: 300px;
+    }
+    .hero-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-dark);
+      margin-bottom: 1rem;
+    }
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: var(--muted);
+      margin-bottom: 2rem;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .btn {
+      background: var(--primary);
+      color: var(--white);
+      border: none;
+      border-radius: 2em;
+      padding: 0.8em 2em;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.08);
+      transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+      outline: none;
+    }
+    .btn:hover, .btn:focus {
+      background: var(--primary-dark);
+      box-shadow: 0 4px 16px rgba(37, 99, 235, 0.12);
+      transform: translateY(-2px) scale(1.03);
+    }
+    .search-bar {
+      display: flex;
+      align-items: center;
+      background: var(--secondary);
+      border-radius: 2em;
+      padding: 0.5em 1em;
+      box-shadow: 0 1px 4px rgba(30, 64, 175, 0.05);
+      max-width: 350px;
+      margin-bottom: 1.5rem;
+    }
+    .search-bar input {
+      border: none;
+      background: transparent;
+      outline: none;
+      font-size: 1rem;
+      flex: 1;
+      padding: 0.5em 0.5em 0.5em 0;
+    }
+    .search-bar button {
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      border-radius: 2em;
+      padding: 0.5em 1.2em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .search-bar button:hover, .search-bar button:focus {
+      background: var(--primary);
+    }
+    .hero-img {
+      flex: 1 1 320px;
+      min-width: 250px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-img img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      object-fit: cover;
+    }
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column;
+        padding: 1.5rem;
+      }
+      .hero-img {
+        margin-top: 1.5rem;
+      }
+    }
+    /* Steps/Features */
+    .steps {
+      max-width: 1200px;
+      margin: 3rem auto 0 auto;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .step {
+      flex: 1 1 250px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      min-width: 250px;
+    }
+    .step-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+    .step-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+    .step-desc {
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+    .step .btn {
+      font-size: 1rem;
+      padding: 0.5em 1.5em;
+    }
+    /* Benefits */
+    .benefits {
+      max-width: 1200px;
+      margin: 3rem auto 0 auto;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .benefit {
+      flex: 1 1 200px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+      min-width: 180px;
+    }
+    .benefit-icon {
+      font-size: 2rem;
+      margin-bottom: 0.7rem;
+      color: var(--accent);
+    }
+    .benefit-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .benefit-desc {
+      color: var(--muted);
+      font-size: 0.98rem;
+    }
+    /* Social Proof */
+    .stats {
+      max-width: 900px;
+      margin: 2.5rem auto 0 auto;
+      display: flex;
+      justify-content: space-around;
+      gap: 2rem;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 1rem;
+      flex-wrap: wrap;
+    }
+    .stat {
+      text-align: center;
+      flex: 1 1 180px;
+      min-width: 150px;
+    }
+    .stat-number {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+    .stat-label {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    /* Testimonials */
+    .testimonials {
+      max-width: 1200px;
+      margin: 3rem auto 0 auto;
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+    .testimonial {
+      flex: 1 1 300px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2rem 1.5rem;
+      margin-bottom: 1.5rem;
+      min-width: 250px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .testimonial-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .testimonial-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      color: var(--primary);
+      font-weight: 700;
+    }
+    .testimonial-info {
+      display: flex;
+      flex-direction: column;
+    }
+    .testimonial-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .testimonial-role {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .testimonial-rating {
+      margin-left: auto;
+      color: #fbbf24;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .testimonial-quote {
+      font-style: italic;
+      color: var(--text);
+      margin-top: 0.5rem;
+    }
+    /* Footer */
+    footer {
+      background: var(--white);
+      margin-top: 3rem;
+      padding: 2rem 0 1rem 0;
+      box-shadow: 0 -2px 12px rgba(30, 64, 175, 0.04);
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      align-items: flex-start;
+      padding: 0 2rem;
+    }
+    .footer-about {
+      flex: 2 1 300px;
+      color: var(--muted);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+    .footer-links {
+      flex: 1 1 180px;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .footer-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover, .footer-links a:focus {
+      color: var(--primary);
+    }
+    .footer-social {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+    .faq-item {
+  border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 1rem;
+}
+
+.faq-question {
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text);
+  width: 100%;
+  text-align: left;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.faq-question:hover {
+  color: var(--primary);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  background: var(--secondary);
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  margin: 0 0.5rem;
+}
+
+.faq-answer.open {
+  max-height: 500px; /* large enough to fit the text */
+  padding: 1rem;
+}
+
+    .footer-social a {
+      color: var(--primary);
+      font-size: 1.5rem;
+      transition: color 0.2s;
+    }
+    .footer-social a:hover, .footer-social a:focus {
+      color: var(--accent);
+    }
+    .footer-bottom {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 700px) {
+      .footer-content {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 0 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <a href="#" class="logo" aria-label="Precollege Home">RankToCollege</a>
+      <button class="mobile-nav-toggle" aria-label="Open navigation menu">&#9776;</button>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="/index">College Predictor</a></li>
+          <li class="dropdown">
+            <button class="dropdown-btn" aria-haspopup="true" aria-expanded="false">Exams &#9662;</button>
+            <div class="dropdown-content" role="menu">
+              <a href="/index?counselling=JoSAA">JoSAA</a>
+                <a href="/index?counselling=CSAB">CSAB</a>
+
+              <!-- <a href="#jacdelhi">JAC Delhi</a>
+              <a href="#uptu">UPTU</a>
+              <a href="#wbjee">WBJEE</a>
+              <a href="#ipu">IPU</a> -->
+            </div>
+          </li>
+          <li><a href="/talkToUs">Talk to Us</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-content">
+        <h1 class="hero-title">RankToCollege helps you choose the best college</h1>
+        <p class="hero-subtitle">Estimate your rank and find the best colleges that match your goals with our College Predictor tools.</p>
+        <div class="hero-cta">
+          <!-- <a href="#predictor" class="btn">Find</a> -->
+        </div>
+        <form class="search-bar" role="search" aria-label="Search for colleges" onsubmit="event.preventDefault();">
+          <input type="text" placeholder="Search colleges..." aria-label="Search colleges" />
+          <button type="submit">Search</button>
+        </form>
+      </div>
+      <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?auto=format&fit=crop&w=400&q=80" alt="Mentor video call illustration" />
+      </div>
+    </section>
+    <section class="steps" id="predictor">
+      <div class="step">
+        <!-- <div class="step-icon" aria-hidden="true">&#128200;</div> -->
+        <!-- <div class="step-title">Step 1: Rank Predictor</div>
+        <div class="step-desc">Estimate your rank based on your exam performance and get a head start.</div>
+        <a href="#" class="btn">Try Rank Predictor</a> -->
+      <!-- </div> -->
+      <div class="step">
+        <div class="step-icon" aria-hidden="true">&#127891;</div>
+        <div class="step-title">College Predictor</div>
+        <div class="step-desc">Get a list of colleges you can target based on your predicted rank.</div>
+        <form action="/index" method="get">
+  <button type="submit" class="btn">Try College Predictor</button>
+</form>
+       <!-- <form action="/index" method="get"><a  href="#" class="btn">Try College Predictor</a></form>  -->
+      </div>
+    </section>
+    <section style="text-align:center; padding: 2rem 1rem;">
+        <h2 style="font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 1rem;">Are you confused about colleges?</h2>
+        <img src="https://www.precollege.in/home/illustration.svg" alt="College Confusion Illustration" style="max-width: 400px; width: 100%; height: auto;" />
+      </section>
+    <section class="benefits">
+      <div class="benefit">
+        <div class="benefit-icon" aria-hidden="true">&#128161;</div>
+        <div class="benefit-title">Personalized Recommendations</div>
+        <div class="benefit-desc">Get tailored college and branch suggestions just for you.</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon" aria-hidden="true">&#128483;</div>
+        <div class="benefit-title">Your Best Fit</div>
+        <div class="benefit-desc">Discover the college and course that truly match your profile.</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon" aria-hidden="true">&#128101;</div>
+        <div class="benefit-title">Your College Compass</div>
+        <div class="benefit-desc">We help you navigate the path from your rank to the right college.</div>
+      </div>
+      <div class="benefit">
+        <div class="benefit-icon" aria-hidden="true">&#128202;</div>
+        <div class="benefit-title">Prediction Tools</div>
+        <div class="benefit-desc">Use our advanced Rank & College Predictor tools.</div>
+      </div>
+    </section>
+    <section class="stats">
+      <div class="stat">
+        <div class="stat-number">24x7</div>
+        <div class="stat-label">Instant, Free & Accurate Results</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">100+</div>
+        <div class="stat-label">Engineering Colleges Covered</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Genuine Predictions</div>
+      </div>
+    </section>
+    <section class="testimonials">
+        <section class="faq" style="max-width: 900px; margin: 3rem auto; padding: 0 1rem;">
+            <h2 style="font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 2rem; text-align: center;">Frequently Asked Questions</h2>
+          
+            <div class="faq-item">
+              <button class="faq-question">1. What is RankToCollege?</button>
+              <div class="faq-answer">
+                <p>RankToCollege is a platform designed to help students make better college choices through data-driven predictions and smart guidance tools.</p>
+              </div>
+            </div>
+          
+            <div class="faq-item">
+              <button class="faq-question">2. How is it different from other college predictors?</button>
+              <div class="faq-answer">
+                <p>Unlike generic predictors, RankToCollege uses real admission data, gender/category filters, and advanced algorithms to offer highly accurate and personalized results.</p>
+              </div>
+            </div>
+          
+            <div class="faq-item">
+              <button class="faq-question">3. Is this platform free to use?</button>
+              <div class="faq-answer">
+                <p>Yes, RankToCollege offers completely free predictions and tools to support every student's college journey.</p>
+              </div>
+            </div>
+          
+            <div class="faq-item">
+              <button class="faq-question">4. Which exams and quotas are supported?</button>
+              <div class="faq-answer">
+                <p>Currently, we support JoSAA and CSAB counseling with Home State (HS), Other State (OS), and All India (AI) quotas.</p>
+              </div>
+            </div>
+          
+            <div class="faq-item">
+              <button class="faq-question">5. Can I talk to mentors or seniors?</button>
+              <div class="faq-answer">
+                <p>Yes! We are adding features soon where you’ll be able to connect directly with verified college seniors for personalized guidance.</p>
+              </div>
+            </div>
+          </section>
+          
+          
+    </section>
+  </main>
+  <footer>
+    <div class="footer-content">
+      <div class="footer-about">
+        <strong>About us:</strong> We are a team of passionate individuals dedicated to helping students make informed college decisions through technology, and community support.
+      </div>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms</a>
+        <a href="#contact">Contact</a>
+        <div class="footer-social">
+          <a href="#" aria-label="Twitter"><span aria-hidden="true">&#x1F426;</span></a>
+          <a href="#" aria-label="Instagram"><span aria-hidden="true">&#x1F33A;</span></a>
+          <a href="#" aria-label="LinkedIn"><span aria-hidden="true">&#x1F4BB;</span></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2025 RankToCollege. All rights reserved.</div>
+  </footer>
+  <script>
+    // Mobile nav toggle
+    const navToggle = document.querySelector('.mobile-nav-toggle');
+    const navUl = document.querySelector('nav ul');
+    navToggle.addEventListener('click', () => {
+      navUl.classList.toggle('open');
+    });
+    // Dropdown
+    const dropdown = document.querySelector('.dropdown');
+    const dropdownBtn = dropdown.querySelector('.dropdown-btn');
+    const dropdownContent = dropdown.querySelector('.dropdown-content');
+    dropdownBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+      dropdownBtn.setAttribute('aria-expanded', dropdown.classList.contains('open'));
+    });
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target)) {
+        dropdown.classList.remove('open');
+        dropdownBtn.setAttribute('aria-expanded', 'false');
+      }
+    });
+    // Smooth scroll for nav links
+    document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth' });
+          if (window.innerWidth < 700) navUl.classList.remove('open');
+        }
+      });
+    });
+    // Sticky nav shadow on scroll
+    window.addEventListener('scroll', () => {
+      const header = document.querySelector('header');
+      if (window.scrollY > 10) {
+        header.style.boxShadow = '0 4px 24px rgba(30, 64, 175, 0.12)';
+      } else {
+        header.style.boxShadow = 'var(--shadow)';
+      }
+    });
+    // FAQ accordion
+document.querySelectorAll(".faq-question").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const answer = btn.nextElementSibling;
+    answer.classList.toggle("open");
+  });
+});
+
+  </script>
+</body>
+</html>
